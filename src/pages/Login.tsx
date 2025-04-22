@@ -37,10 +37,10 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-purple-50 to-white dark:from-purple-900/20 dark:to-background dark:text-foreground">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-purple-dark">Flow Tasks</h1>
+          <h1 className="text-4xl font-bold text-purple-dark dark:text-purple-light">Flow Tasks</h1>
           <p className="text-muted-foreground mt-2">Collaborate and manage tasks together</p>
         </div>
         

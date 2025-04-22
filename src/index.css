@@ -98,11 +98,11 @@
 
 @layer components {
   .task-card {
-    @apply bg-white p-4 rounded-lg shadow-md border border-border hover:shadow-lg transition-all duration-200 animate-fade-in;
+    @apply bg-white dark:bg-card p-4 rounded-lg shadow-md border border-border hover:shadow-lg transition-all duration-200 animate-fade-in;
   }
   
   .board-card {
-    @apply bg-white p-6 rounded-lg shadow-md border border-border hover:shadow-lg hover:border-purple transition-all duration-200 animate-fade-in;
+    @apply bg-white dark:bg-card p-6 rounded-lg shadow-md border border-border hover:shadow-lg hover:border-purple transition-all duration-200 animate-fade-in;
   }
   
   .task-tag {
@@ -110,23 +110,23 @@
   }
   
   .task-tag-purple {
-    @apply bg-todo-purple text-purple-dark;
+    @apply bg-todo-purple text-purple-dark dark:text-purple;
   }
   
   .task-tag-green {
-    @apply bg-todo-green text-green-700;
+    @apply bg-todo-green text-green-700 dark:text-green-500;
   }
   
   .task-tag-yellow {
-    @apply bg-todo-yellow text-yellow-700;
+    @apply bg-todo-yellow text-yellow-700 dark:text-yellow-500;
   }
   
   .task-tag-blue {
-    @apply bg-todo-blue text-blue-700;
+    @apply bg-todo-blue text-blue-700 dark:text-blue-500;
   }
   
   .task-tag-pink {
-    @apply bg-todo-pink text-pink-700;
+    @apply bg-todo-pink text-pink-700 dark:text-pink-500;
   }
 
   .hover-scale {

@@ -65,7 +65,7 @@ export default {
 				},
 				// Our custom colors
 				purple: {
-					light: '#9b87f5',
+					light: '#BEB1F5',
 					DEFAULT: '#7E69AB',
 					dark: '#5d4e80'
 				},
