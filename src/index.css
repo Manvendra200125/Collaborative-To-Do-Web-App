@@ -98,11 +98,11 @@
 
 @layer components {
   .task-card {
-    @apply bg-white p-4 rounded-lg shadow-md border border-border hover:shadow-lg transition-all duration-200;
+    @apply bg-white p-4 rounded-lg shadow-md border border-border hover:shadow-lg transition-all duration-200 animate-fade-in;
   }
   
   .board-card {
-    @apply bg-white p-6 rounded-lg shadow-md border border-border hover:shadow-lg hover:border-purple transition-all duration-200;
+    @apply bg-white p-6 rounded-lg shadow-md border border-border hover:shadow-lg hover:border-purple transition-all duration-200 animate-fade-in;
   }
   
   .task-tag {
@@ -128,4 +128,23 @@
   .task-tag-pink {
     @apply bg-todo-pink text-pink-700;
   }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
 }
+
+/* Animations for cards and fade/slide in */
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+  }
+  .animate-bounce {
+    animation: bounce 1s;
+  }
+}
+/* Re-use already present keyframes from tailwind.config for fade-in, bounce, slide-in
+If needed, you can also add more custom ones here */

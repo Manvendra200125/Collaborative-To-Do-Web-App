@@ -16,7 +16,7 @@ export const BoardDetail: React.FC = () => {
   if (!currentBoard) {
     return (
       <Layout>
-        <div className="flex flex-col items-center justify-center h-full p-6">
+        <div className="flex flex-col items-center justify-center h-full p-6 animate-fade-in">
           <h2 className="text-2xl font-bold mb-2">No Board Selected</h2>
           <p className="text-muted-foreground mb-4">
             Select a board from the sidebar or create a new one
@@ -34,11 +34,14 @@ export const BoardDetail: React.FC = () => {
 
   return (
     <Layout>
-      <div className="p-6">
+      <div className="p-6 animate-fade-in">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-2xl font-bold">{currentBoard.title}</h1>
+            <h1 className="text-2xl font-bold animate-slide-in">{currentBoard.title}</h1>
             <p className="text-muted-foreground">{currentBoard.description}</p>
+            <span className="block text-xs text-muted-foreground mt-1">
+              {currentBoard.members?.length || 1} member{(currentBoard.members?.length || 1) > 1 ? "s" : ""}
+            </span>
           </div>
           <div className="flex space-x-2">
             <Dialog>
@@ -85,7 +88,7 @@ export const BoardDetail: React.FC = () => {
             {currentBoard.members?.map((member) => (
               <div 
                 key={member.id}
-                className="flex items-center bg-white rounded-full pr-2 shadow-sm border"
+                className="flex items-center bg-white rounded-full pr-2 shadow-sm border animate-fade-in"
               >
                 <div 
                   className="w-8 h-8 rounded-full bg-purple flex items-center justify-center text-white mr-2"
@@ -161,3 +164,4 @@ export const BoardDetail: React.FC = () => {
     </Layout>
   );
 };
+

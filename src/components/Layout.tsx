@@ -1,8 +1,8 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useApp } from "../contexts/AppContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, Menu, Plus } from "lucide-react";
+import { LogOut, Menu, Plus, Sun, Moon } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CreateBoardForm } from "./CreateBoardForm";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from "@/components/ui/sidebar";
@@ -13,6 +13,16 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { isAuthenticated, logout, user } = useApp();
+
+  // Light/Dark mode logic using Tailwind & "dark" class on <html>
+  const [isDark, setIsDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+  React.useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
 
   if (!isAuthenticated) {
     return <>{children}</>;
@@ -42,13 +52,22 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               </SidebarTrigger>
             </div>
             <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsDark((v) => !v)}
+                title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                className="hover-scale"
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </Button>
               <div className="text-sm font-medium">{user?.name}</div>
               <Button variant="ghost" size="icon" onClick={logout}>
                 <LogOut className="h-5 w-5" />
               </Button>
             </div>
           </header>
-          <main className="flex-1 overflow-auto">
+          <main className="flex-1 overflow-auto animate-fade-in">
             {children}
           </main>
         </div>

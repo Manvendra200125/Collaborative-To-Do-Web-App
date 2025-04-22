@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useApp } from "../contexts/AppContext";
 import { Layout } from "../components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,14 +9,21 @@ import { Edit, Plus, Trash, Users } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CreateBoardForm } from "@/components/CreateBoardForm";
 
+// Add useNavigate for routing when opening boards
 export const Dashboard: React.FC = () => {
   const { boards, setCurrentBoard, deleteBoard } = useApp();
+  const navigate = useNavigate();
+
+  const openBoard = (board: any) => {
+    setCurrentBoard(board);
+    navigate("/board");
+  };
 
   return (
     <Layout>
-      <div className="p-6">
+      <div className="p-6 animate-fade-in">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">My Boards</h1>
+          <h1 className="text-2xl font-bold animate-bounce">My Boards</h1>
           <Dialog>
             <DialogTrigger asChild>
               <Button>
@@ -37,7 +45,7 @@ export const Dashboard: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {boards.map((board) => (
-            <Card key={board.id} className="board-card animate-fade-in">
+            <Card key={board.id} className="board-card animate-slide-in">
               <CardHeader className="pb-2">
                 <div className="flex justify-between items-start">
                   <CardTitle>{board.title}</CardTitle>
@@ -57,7 +65,7 @@ export const Dashboard: React.FC = () => {
               <CardContent>
                 <div className="flex items-center justify-between mb-4">
                   <div className="text-sm text-muted-foreground">
-                    {board.members?.length || 1} members
+                    {(board.members?.length || 1)} member{(board.members?.length || 1) > 1 ? "s" : ""}
                   </div>
                   <div className="flex -space-x-2">
                     {board.members?.slice(0, 3).map((member) => (
@@ -79,9 +87,9 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </div>
                 <Button 
-                  className="w-full" 
+                  className="w-full animate-bounce" 
                   variant="outline"
-                  onClick={() => setCurrentBoard(board)}
+                  onClick={() => openBoard(board)}
                 >
                   Open Board
                 </Button>
@@ -93,3 +101,4 @@ export const Dashboard: React.FC = () => {
     </Layout>
   );
 };
+
