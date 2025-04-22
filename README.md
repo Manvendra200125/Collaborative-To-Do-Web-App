@@ -16,10 +16,10 @@ Follow these steps to run the project locally:
 
 ```sh
 # Step 1: Clone the repository
-git clone 
+git clone https://github.com/Manvendra200125/Collaborative-To-Do-Web-App.git
 
 # Step 2: Navigate to the project directory
-cd 
+cd Collaborative-To-Do-Web-App
 
 # Step 3: Install dependencies
 npm install
