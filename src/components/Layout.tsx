@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useApp } from "../contexts/AppContext";
 import { Button } from "@/components/ui/button";
@@ -14,8 +13,9 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { isAuthenticated, logout, user } = useApp();
 
-  // Light/Dark mode logic using Tailwind & "dark" class on <html>
+  // Responsive: collapse sidebar for mobile, make header stick.
   const [isDark, setIsDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+
   React.useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -30,11 +30,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full">
+      <div className="min-h-screen flex flex-col sm:flex-row w-full">
         <Sidebar className="border-r">
-          <SidebarHeader className="flex items-center justify-between px-4 py-2 h-14">
+          <SidebarHeader className="flex items-center justify-between px-4 py-2 h-12 sm:h-14">
             <div className="flex items-center space-x-2">
-              <div className="font-bold text-xl text-purple-dark">Flow Tasks</div>
+              <div className="font-bold text-lg sm:text-xl text-purple-dark">Flow Tasks</div>
             </div>
           </SidebarHeader>
           <SidebarContent>
@@ -43,7 +43,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </Sidebar>
 
         <div className="flex-1 flex flex-col">
-          <header className="h-14 border-b flex items-center justify-between px-4">
+          <header className="h-12 sm:h-14 border-b flex items-center justify-between px-2 sm:px-4 sticky top-0 bg-background z-20">
             <div className="flex items-center">
               <SidebarTrigger>
                 <Button variant="ghost" size="icon">
@@ -61,7 +61,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               >
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </Button>
-              <div className="text-sm font-medium">{user?.name}</div>
+              <div className="text-xs sm:text-sm font-medium">{user?.name}</div>
               <Button variant="ghost" size="icon" onClick={logout}>
                 <LogOut className="h-5 w-5" />
               </Button>
@@ -80,9 +80,9 @@ const BoardList = () => {
   const { boards, setCurrentBoard, currentBoard } = useApp();
   
   return (
-    <div className="p-3">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="font-medium text-sm text-muted-foreground">MY BOARDS</h2>
+    <div className="p-1 sm:p-3">
+      <div className="flex items-center justify-between mb-2 sm:mb-4">
+        <h2 className="font-medium text-xs sm:text-sm text-muted-foreground">MY BOARDS</h2>
         <Dialog>
           <DialogTrigger asChild>
             <Button variant="ghost" size="icon" className="h-5 w-5 rounded-sm">
@@ -105,7 +105,7 @@ const BoardList = () => {
           <button
             key={board.id}
             onClick={() => setCurrentBoard(board)}
-            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            className={`w-full text-left px-2 sm:px-3 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
               currentBoard?.id === board.id
                 ? "bg-purple/10 text-purple-dark"
                 : "text-muted-foreground hover:bg-secondary"

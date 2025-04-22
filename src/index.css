@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -85,11 +84,11 @@
   }
 }
 
+/* General Touch Responsive Tweaks */
 @layer base {
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -98,15 +97,17 @@
 
 @layer components {
   .task-card {
-    @apply bg-white dark:bg-card p-4 rounded-lg shadow-md border border-border hover:shadow-lg transition-all duration-200 animate-fade-in;
+    @apply bg-white dark:bg-card rounded-lg border border-border shadow-md hover:shadow-lg transition-all duration-200 animate-fade-in;
+    @apply p-3 py-2 sm:p-4; /* compact on mobile */
   }
   
   .board-card {
-    @apply bg-white dark:bg-card p-6 rounded-lg shadow-md border border-border hover:shadow-lg hover:border-purple transition-all duration-200 animate-fade-in;
+    @apply bg-white dark:bg-card rounded-lg border border-border shadow-md hover:shadow-lg hover:border-purple transition-all duration-200 animate-fade-in;
+    @apply p-3 sm:p-6;
   }
-  
+
   .task-tag {
-    @apply text-xs font-medium py-1 px-2 rounded-full;
+    @apply text-xs font-medium py-0.5 px-2 rounded-full;
   }
   
   .task-tag-purple {
@@ -134,7 +135,7 @@
   }
 }
 
-/* Animations for cards and fade/slide in */
+/* Card and Board compact margin for mobile */
 @layer utilities {
   .animate-fade-in {
     animation: fade-in 0.3s ease-out;
@@ -145,6 +146,7 @@
   .animate-bounce {
     animation: bounce 1s;
   }
+  .glass {
+    @apply bg-white/10 dark:bg-card/60 backdrop-blur-lg border border-white/10 rounded-xl;
+  }
 }
-/* Re-use already present keyframes from tailwind.config for fade-in, bounce, slide-in
-If needed, you can also add more custom ones here */

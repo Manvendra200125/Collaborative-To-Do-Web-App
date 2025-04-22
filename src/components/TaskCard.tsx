@@ -36,13 +36,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   };
 
   return (
-    <div className="task-card animate-fade-in">
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="font-medium">{task.title}</h3>
+    <div className="task-card animate-fade-in px-3 py-2 sm:p-4">
+      <div className="flex justify-between items-start mb-1 sm:mb-2">
+        <h3 className="font-medium text-sm sm:text-base">{task.title}</h3>
         <div className="flex space-x-1">
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-7 w-7">
+              <Button variant="ghost" size="icon" className="h-6 w-6 sm:h-7 sm:w-7">
                 <Edit className="h-4 w-4" />
               </Button>
             </DialogTrigger>
@@ -57,7 +57,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="h-7 w-7"
+            className="h-6 w-6 sm:h-7 sm:w-7"
             onClick={() => deleteTask(task.id)}
           >
             <Trash className="h-4 w-4" />
@@ -65,9 +65,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
         </div>
       </div>
       {task.description && (
-        <p className="text-sm text-muted-foreground mb-3">{task.description}</p>
+        <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">{task.description}</p>
       )}
-      <div className="flex flex-wrap gap-1 mb-3">
+      <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
         {task.tags?.map((tag) => (
           <span key={tag} className={`task-tag ${getRandomTagColor(tag)}`}>
             #{tag}
@@ -79,7 +79,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           {task.assignee && (
             <div className="flex items-center">
               <div 
-                className="w-6 h-6 rounded-full bg-purple flex items-center justify-center text-white text-xs"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-purple flex items-center justify-center text-white text-xs"
                 title={task.assignee.name}
               >
                 {task.assignee.name.substring(0, 1)}
